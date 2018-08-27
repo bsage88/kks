@@ -1,0 +1,66 @@
+.kk-container {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+}
+
+.kk-button-container {
+}
+
+.kk-button {
+  display: flex;
+  padding: 15px 25px;
+  font-size: 24px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  background: #4caf50;
+  cursor: pointer;
+  outline: none;
+}
+
+.kk-button:hover {
+  background-color: #3e8e41;
+}
+
+.kk-button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.kk-list {
+    position: absolute;
+    left: -200px;
+    width: 200px;
+    background: green;
+    transition: left 1s;
+}
+
+.kk-list-visible {
+    left: 0;
+}
+
+.kk-name {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.kk-name:last-child {
+  border-bottom: none;
+}
+
+.kk-picture {
+  width: 50px;
+  height: 50px;
+  padding: 2px;
+  border: 2px solid lightgray;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+@media only screen and (min-width: 768px) {
+
+}
