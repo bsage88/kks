@@ -1,0 +1,20 @@
+.kk-name {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.kk-name:last-child {
+  border-bottom: none;
+}
+
+.kk-picture {
+  width: 50px;
+  height: 50px;
+  padding: 2px;
+  border: 2px solid lightgray;
+  border-radius: 50%;
+  margin-right: 15px;
+}

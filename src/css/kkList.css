@@ -1,0 +1,39 @@
+.kk-list-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: -222px;
+  width: 200px;
+  height: 96vh;
+  background: white;
+  border: 1px solid lightgray;
+  padding: 10px;
+  transition: left 1s;
+  overflow: auto;
+}
+
+.kk-list-container.visible {
+  left: 0;
+}
+
+.kk-list {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  border-top: 1px solid lightgray;
+}
+
+.kk-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .kk-list-container {
+    position: initial;
+  }
+}
