@@ -3,6 +3,7 @@ import KkList from "./KkList";
 import Overlay from "./Overlay";
 import { toggleMenu, toggleOverlay } from "../utils";
 import "../css/kks.css";
+import SnowFlakes from "./SnowFlakes";
 
 export default function Kks(props) {
   return (
@@ -18,7 +19,8 @@ export default function Kks(props) {
           Pick your KK
         </button>
       </div>
-      <Overlay />
+      <Overlay name={'Monika'} />
+      <SnowFlakes />
     </div>
   );
 }

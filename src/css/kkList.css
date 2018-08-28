@@ -34,4 +34,8 @@
   .kk-list-container {
     position: initial;
   }
+
+  .kk-list {
+    margin-top: 10px;
+  }
 }
