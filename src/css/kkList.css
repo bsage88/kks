@@ -35,7 +35,7 @@
     position: initial;
   }
 
-  .kk-list {
+  .kk-list, .kk-list-header {
     margin-top: 10px;
   }
 }

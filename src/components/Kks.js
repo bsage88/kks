@@ -8,7 +8,7 @@ import SnowFlakes from "./SnowFlakes";
 export default function Kks(props) {
   return (
     <div className="kk-container">
-      <div>
+      <div className="menu-container">
         <button className="expand-menu" onClick={toggleMenu}>
           <i className="fas fa-bars" />
         </button>

@@ -28,6 +28,12 @@
   background-color: rgb(88, 198, 197);
 }
 
+.menu-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .expand-menu {
   font-size: 25px;
   border: none;
