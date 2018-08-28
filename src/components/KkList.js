@@ -17,7 +17,7 @@ export default function Kks(props) {
       <div className="kk-list-header">
         <label>Participants</label>
         <button className="expand-menu" onClick={toggleMenu}>
-          <i class="fas fa-arrow-left" />
+          <i className="fas fa-arrow-left" />
         </button>
       </div>
       <div className="kk-list">{getNameList()}</div>

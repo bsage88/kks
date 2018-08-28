@@ -1,0 +1,18 @@
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(218, 218, 218, 0.8);
+    display: none;
+}
+
+.overlay.visible {
+    display: initial;
+    z-index: 1;
+}
+
+.overlay-body {
+
+}

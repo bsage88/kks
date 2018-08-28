@@ -3,7 +3,13 @@
   flex-grow: 1;
   flex-shrink: 0;
   align-items: center;
-  margin-bottom: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.kk-name:hover {
+  background: rgb(88, 198, 197);
+  color: rgb(230, 230, 230);
 }
 
 .kk-name:last-child {
@@ -14,7 +20,7 @@
   width: 50px;
   height: 50px;
   padding: 2px;
-  border: 2px solid lightgray;
+  border: 2px solid rgb(88, 198, 197);
   border-radius: 50%;
   margin-right: 15px;
 }
