@@ -10,15 +10,20 @@ import Peter from './images/peter.jpg';
 import Rob from './images/rob.jpg';
 
 export const profilePictures = {
-    Andrew,
-    Anna,
-    Babcia: null,
-    Brian, 
-    Dorota,
-    Isabella,
-    Jarek, 
-    Marian,
-    Monika,
-    Peter, 
-    Rob
+  Andrew,
+  Anna,
+  Babcia: null,
+  Brian,
+  Dorota,
+  Isabella,
+  Jarek,
+  Marian,
+  Monika,
+  Peter,
+  Rob
+};
+
+export const routes = {
+  SIGN_IN: '/',
+  HOME: '/default'
 };

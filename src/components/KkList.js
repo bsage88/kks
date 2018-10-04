@@ -1,15 +1,6 @@
-import React from "react";
-import _ from "lodash";
-import KkName from "./KkName";
-import { toggleMenu } from "../utils";
-import { profilePictures } from "../constants";
+import React from 'react';
+import { toggleMenu, getNameList } from '../utils';
 import '../css/kkList.css';
-
-function getNameList() {
-  return _.map(profilePictures, (value, key) => (
-    <KkName name={key} picture={value} />
-  ));
-}
 
 export default function Kks(props) {
   return (

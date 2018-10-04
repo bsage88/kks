@@ -14,6 +14,7 @@ export default function SnowFlakes() {
       <div className="snowflake">❅</div>
       <div className="snowflake">❆</div>
       <div className="snowflake">❄</div>
+      
     </div>
   );
 }

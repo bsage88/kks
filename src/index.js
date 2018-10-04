@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Kks from './components/Kks';
 import './css/index.css';
+import App from './components/App';
 
-ReactDOM.render(<Kks />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

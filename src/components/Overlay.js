@@ -1,8 +1,8 @@
-import React from "react";
-import sign from "../images/sign.png";
-import merryChristmas from "../images/merryChristmas.jpg";
-import { toggleOverlay } from "../utils";
-import "../css/overlay.css";
+import React from 'react';
+import sign from '../images/sign.png';
+import merryChristmas from '../images/merryChristmas.jpg';
+import { toggleOverlay } from '../utils';
+import '../css/overlay.css';
 
 export default function Overlay(props) {
   return (
