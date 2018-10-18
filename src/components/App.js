@@ -4,6 +4,7 @@ import { firebase } from '../firebase';
 import { routes } from '../constants';
 import Kks from './Kks';
 import SignIn from './SignIn';
+import { generateKKMappings } from '../utils';
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +21,8 @@ class App extends Component {
         ? this.setState({ authUser })
         : this.setState({ authUser: null });
     });
+
+    // generateKKMappings();
   }
 
   render() {

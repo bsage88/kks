@@ -48,7 +48,7 @@ class Kks extends Component {
         <KkList />
         <div className="kk-button-container">
           <button className="kk-button" onClick={toggleOverlay}>
-            Pick your KK
+            Show your KK
           </button>
         </div>
         <Overlay name={this.state.matchedKK} />

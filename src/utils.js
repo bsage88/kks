@@ -65,7 +65,7 @@ function getKKMappings() {
   return mappings;
 }
 
-function generateKKMappings() {
+export function generateKKMappings() {
   let mappings;
   while (!mappings) {
     mappings = getKKMappings();
