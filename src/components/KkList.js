@@ -2,7 +2,7 @@ import React from 'react';
 import { toggleMenu, getNameList } from '../utils';
 import '../css/kkList.css';
 
-export default function Kks(props) {
+export default function KkList(props) {
   return (
     <div id="kkListContainer" className="kk-list-container">
       <div className="kk-list-header">

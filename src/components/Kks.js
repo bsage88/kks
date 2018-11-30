@@ -32,7 +32,10 @@ class Kks extends Component {
   render() {
     if (!firebase.auth.currentUser || !this.state.matchedKK) {
       return (
-        <a className="login-message" href="http://christmas-kks.firebaseapp.com">
+        <a
+          className="login-message"
+          href="http://christmas-kks.firebaseapp.com"
+        >
           Go to sign in page: http://christmas-kks.firebaseapp.com
         </a>
       );

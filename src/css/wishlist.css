@@ -1,0 +1,49 @@
+.wishlist-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.5s ease-out;
+}
+
+.wishlist-overlay.visible {
+    opacity: 1;
+    z-index: 1;
+}
+
+.wishlist-overlay-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid rgb(88, 198, 197);
+    background: black;
+    padding: 10px 30px;
+}
+
+.wishlist-overlay-body li:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.wishlist-overlay-body li,
+.wishlist-overlay-body a {
+    color: white;
+}
+
+.wishlist-overlay-body h3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-wishlist {
+    margin-left: 50px;
+    cursor: pointer;
+}
