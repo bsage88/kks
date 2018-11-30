@@ -20,9 +20,9 @@ export function toggleOverlay(event) {
   overlay.classList.toggle('visible');
 }
 
-export function getNameList() {
+export function getNameList(setWishlistName) {
   return _.map(profilePictures, (value, key) => (
-    <KkName name={key} picture={value} />
+    <KkName name={key} picture={value} setWishlistName={setWishlistName} />
   ));
 }
 

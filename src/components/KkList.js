@@ -11,7 +11,7 @@ export default function KkList(props) {
           <i className="fas fa-arrow-left" />
         </button>
       </div>
-      <div className="kk-list">{getNameList()}</div>
+      <div className="kk-list">{getNameList(props.setWishlistName)}</div>
     </div>
   );
 }

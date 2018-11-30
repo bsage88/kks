@@ -5,12 +5,14 @@ import SnowFlakes from './SnowFlakes';
 import { toggleMenu, toggleOverlay, capitalizeFirstLetter } from '../utils';
 import { firebase } from '../firebase';
 import '../css/kks.css';
+import WishList from './WishList';
 
 class Kks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      matchedKK: null
+      matchedKK: null,
+      wishlistName: ''
     };
   }
 
@@ -28,6 +30,11 @@ class Kks extends Component {
         });
     }
   }
+
+  setWishlistName = name => event => {
+    event.preventDefault();
+    this.setState({ wishlistName: name });
+  };
 
   render() {
     if (!firebase.auth.currentUser || !this.state.matchedKK) {
@@ -48,13 +55,17 @@ class Kks extends Component {
             <i className="fas fa-bars" />
           </button>
         </div>
-        <KkList />
+        <KkList setWishlistName={this.setWishlistName} />
         <div className="kk-button-container">
           <button className="kk-button" onClick={toggleOverlay}>
             Show your KK
           </button>
         </div>
         <Overlay name={this.state.matchedKK} />
+        <WishList
+          name={this.state.wishlistName}
+          setWishlistName={this.setWishlistName}
+        />
         <SnowFlakes />
       </div>
     );

@@ -1,6 +1,5 @@
 .kk-name {
   display: flex;
-  position: relative;
   flex-grow: 1;
   flex-shrink: 0;
   align-items: center;
