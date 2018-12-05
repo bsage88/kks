@@ -52,16 +52,17 @@ export const wishlists = {
       Beis Weekender Bag
     </a>
   ],
-  Babcia: ['None'],
-  Brian: ['None'],
+  Babcia: ['Tim Horton\'s Giftcard'],
+  Brian: ['Mario Party (Switch Version)', 'Best Buy Giftcard'],
   Dorota: ['None'],
   Isabella: [
     '“All about cake” by Christina Tosi',
     'Amazon Giftcard',
-    'Homesense Giftcard'
+    'Homesense Giftcard',
+    'Marc Jacobs “kiss,kiss, bang,bang” Creme Lipstick'
   ],
   Jarek: ['GNC Giftcard', 'Winners Giftcard'],
-  Marian: ['None'],
+  Marian: ['Honda Ridgeline', 'Wallet with Clasp', 'Fireplace Fan (non-electric)', 'Canada Computers Giftcard'],
   Monika: [
     <a
       target="_blank"
