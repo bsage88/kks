@@ -20,5 +20,3 @@ export const doPasswordUpdate = (password) =>
 
 export const doFetchSignInMethodsForEmail = (email) =>
     auth.fetchSignInMethodsForEmail(email);
-
-export const isLoggedIn = () => auth.currentUser;

@@ -5,8 +5,7 @@ import Kks from './pages/Kks';
 import ForgotPassword from './pages/ForgotPassword';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import { firebase } from './firebase';
-import { generateKKMappings, generateWishlists } from './utils'; // eslint-disable-line
+// import { generateKKMappings, generateWishlists } from './utils';
 
 export default function App() {
     useEffect(() => {

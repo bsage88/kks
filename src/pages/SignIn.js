@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { firebase, auth } from '../firebase';
+import { auth } from '../firebase';
 import { routes } from '../constants';
+import useKeyPress from '../hooks/useKeyPress';
+import useAutoAuthentication from '../hooks/useAutoAuthentication';
 
 export default function SignIn({ history }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    useKeyPress(13, onSignIn);
+    useAutoAuthentication(() => history.push(routes.home));
 
-    useEffect(() => {
-        firebase.auth.onAuthStateChanged((user) => {
-            if (user) {
-                history.push(routes.home);
-            }
-        });
-    }, []);
-
-    function onSignUp() {
+    function onSignIn() {
         auth.doSignInWithEmailAndPassword(email, password)
             .then(() => history.push(routes.home))
             .catch((error) => setError(error));
@@ -45,7 +41,7 @@ export default function SignIn({ history }) {
                 </Link>
                 <button
                     className="login-button"
-                    onClick={onSignUp}
+                    onClick={onSignIn}
                     type="button"
                 >
                     LOG IN

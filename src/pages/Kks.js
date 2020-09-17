@@ -6,47 +6,37 @@ import SnowFlakes from '../components/SnowFlakes';
 import { toggleMenu, toggleOverlay, capitalizeFirstLetter } from '../utils';
 import { firebase } from '../firebase';
 import { routes } from '../constants';
+import useAutoAuthentication from '../hooks/useAutoAuthentication';
 
 export default function Kks({ history }) {
     const [matchedKK, setMatchedKK] = useState(null);
     const [wishlistUser, setWishlistUser] = useState(null);
     const [isWishlistVisible, setIsWishlistVisible] = useState(false);
+    useAutoAuthentication(undefined, () => history.push(routes.signIn));
 
     useEffect(() => {
-        // if (firebase.auth.currentUser) {
-        //     const userName = capitalizeFirstLetter(
-        //         firebase.auth.currentUser.email.split('@')[0]
-        //     );
-        //     firebase.database
-        //         .ref(`/mappings/${userName}`)
-        //         .once('value')
-        //         .then((matchedKKSnapshot) => {
-        //             setMatchedKK(matchedKKSnapshot.val());
-        //         });
-        // }
+        if (firebase.auth.currentUser) {
+            const userName = capitalizeFirstLetter(
+                firebase.auth.currentUser.email.split('@')[0]
+            );
+            firebase.database
+                .ref(`/mappings/${userName}`)
+                .once('value')
+                .then((matchedKKSnapshot) => {
+                    setMatchedKK(matchedKKSnapshot.val());
+                });
+        }
     }, []);
 
-    if (!firebase.auth.currentUser) {
-        // history.push(routes.signIn);
-        // return (
-        //     <a
-        //         className="login-message"
-        //         href="http://christmas-kks.firebaseapp.com"
-        //     >
-        //         Go to sign in page: http://christmas-kks.firebaseapp.com
-        //     </a>
-        // );
-    }
-
-    return (
-        <button
-            onClick={() =>
-                firebase.auth.signOut().then(() => history.push(routes.signIn))
-            }
-        >
-            Logout
-        </button>
-    );
+    // return (
+    //     <button
+    //         onClick={() =>
+    //             firebase.auth.signOut().then(() => history.push(routes.signIn))
+    //         }
+    //     >
+    //         Logout
+    //     </button>
+    // );
 
     if (!matchedKK) {
         return null;

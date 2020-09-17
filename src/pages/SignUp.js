@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
 import { routes } from '../constants';
+import useKeyPress from '../hooks/useKeyPress';
 
 export default function SignUp({ history }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(null);
+    useKeyPress(13, onSignUp);
 
     function onSignUp() {
         if (password !== confirmPassword) {
