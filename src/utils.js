@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { profilePictures } from './constants';
-import { saveKKMappings, saveWishlists } from './database';
+import { users } from './constants';
+import { saveKKMappings, saveWishlists } from './firebase/database';
 
 export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -19,7 +19,7 @@ export function toggleOverlay(event) {
 }
 
 function getNameArray() {
-    return Object.keys(profilePictures);
+    return _.map(users, 'name');
 }
 
 function getKKIndex(name, availableNames) {
@@ -43,7 +43,7 @@ function getKKMappings() {
     let availableNames = getNameArray();
     let mappings = {};
 
-    names.forEach(name => {
+    names.forEach((name) => {
         const kkIndex = getKKIndex(name, availableNames);
         if (kkIndex === null) {
             console.log('oops');
@@ -70,7 +70,7 @@ export function generateWishlists() {
     const wishlists = names.reduce(
         (results, name) => ({
             ...results,
-            [name]: ['None']
+            [name]: ['None'],
         }),
         {}
     );

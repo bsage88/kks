@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase';
+import { doPasswordReset } from '../firebase/auth';
 import { routes } from '../constants';
 
 export default function ForgotPassword() {
@@ -9,7 +9,7 @@ export default function ForgotPassword() {
     const [error, setError] = useState(null);
 
     function onReset() {
-        auth.doPasswordReset(email)
+        doPasswordReset(email)
             .then(() => {
                 setError(null);
                 setCompleted(true);

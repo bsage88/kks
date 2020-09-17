@@ -1,8 +1,7 @@
 import React from 'react';
-import None from '../images/none.jpg';
 
 export default function KkName({ name, picture, showWishlist }) {
-    const profilePicture = picture || None;
+    const profilePicture = picture;
 
     return (
         <div className="kk-name" onClick={() => showWishlist(name)}>

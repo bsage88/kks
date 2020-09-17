@@ -20,3 +20,5 @@ export const doPasswordUpdate = (password) =>
 
 export const doFetchSignInMethodsForEmail = (email) =>
     auth.fetchSignInMethodsForEmail(email);
+
+export const logout = (callback) => auth.signOut().then(callback);

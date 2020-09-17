@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { firebase } from '../firebase';
+import { auth } from '../firebase/firebase';
 
 export default function useAutoAuthentication(onLoggedIn, onLoggedOut) {
     useEffect(() => {
-        firebase.auth.onAuthStateChanged((user) => {
+        auth.onAuthStateChanged((user) => {
             if (user) {
                 if (onLoggedIn) onLoggedIn();
             } else {

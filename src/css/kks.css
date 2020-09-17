@@ -1,64 +1,75 @@
+.logout-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #575757;
+    background: white;
+    border: 1px solid #f2f2f2;
+    cursor: pointer;
+    z-index: 10;
+}
+
 .login-message {
-  display: flex;
-  flex-wrap: wrap;
-  height: 50vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: white;
+    display: flex;
+    flex-wrap: wrap;
+    height: 50vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
 }
 
 .kk-container {
-  display: flex;
-  flex-grow: 1;
-  position: relative;
-  height: 100vh;
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    height: 100vh;
 }
 
 .kk-button-container {
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
 }
 
 .kk-button {
-  display: flex;
-  padding: 15px 25px;
-  font-size: 24px;
-  border: 1px solid rgb(88, 198, 197);
-  border-radius: 30px;
-  background: rgb(11, 19, 32);
-  color: rgb(230, 230, 230);
-  cursor: pointer;
-  outline: none;
+    display: flex;
+    padding: 15px 25px;
+    font-size: 24px;
+    border: 1px solid rgb(88, 198, 197);
+    border-radius: 30px;
+    background: rgb(11, 19, 32);
+    color: rgb(230, 230, 230);
+    cursor: pointer;
+    outline: none;
 }
 
 .kk-button:hover {
-  background-color: rgb(88, 198, 197);
+    background-color: rgb(88, 198, 197);
 }
 
 .menu-container {
-  position: absolute;
-  top: 0;
-  left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .expand-menu {
-  font-size: 25px;
-  border: none;
-  padding: 10px;
-  background: transparent;
-  color: rgb(230, 230, 230);
+    font-size: 25px;
+    border: none;
+    padding: 10px;
+    background: transparent;
+    color: rgb(230, 230, 230);
 }
 
 .expand-menu:hover {
-  background: rgb(88, 198, 197);
-  color: rgb(230, 230, 230);
+    background: rgb(88, 198, 197);
+    color: rgb(230, 230, 230);
 }
 
 @media only screen and (min-width: 768px) {
-  .expand-menu {
-    display: none;
-  }
+    .expand-menu {
+        display: none;
+    }
 }

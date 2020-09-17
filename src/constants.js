@@ -1,28 +1,21 @@
-import Andrew from './images/andrew.jpg';
-import Anna from './images/anna.jpg';
-import Brian from './images/brian.jpg';
-import Dorota from './images/dorota.jpg';
-import Isabella from './images/isa.jpg';
-import Jarek from './images/jarek.jpg';
-import Marian from './images/marian.jpg';
-import Monika from './images/monika.jpg';
-import Pat from './images/pat.jpg';
-import Peter from './images/peter.jpg';
-import Rob from './images/rob.jpg';
-
-export const profilePictures = {
-    Andrew,
-    Anna,
-    Babcia: null,
-    Brian,
-    Dorota,
-    Isabella,
-    Jarek,
-    Marian,
-    Monika,
-    Pat,
-    Peter,
-    Rob,
+export const users = {
+    andrew: { profilePicture: 'andrew.jpg', name: 'Andrew', wishlist: [] },
+    anna: { profilePicture: 'anna.jpg', name: 'Anna', wishlist: [] },
+    babcia: { profilePicture: null, name: 'Andrew', wishlist: [] },
+    brad: { profilePicture: 'brad.jpg', name: 'Brad', wishlist: [] },
+    brian: { profilePicture: 'brian.jpg', name: 'Brian', wishlist: [] },
+    dorota: { profilePicture: 'dorota.jpg', name: 'Dorota', wishlist: [] },
+    isabella: {
+        profilePicture: 'isabella.jpg',
+        name: 'Isabella',
+        wishlist: [],
+    },
+    jarek: { profilePicture: 'jarek.jpg', name: 'Jarek', wishlist: [] },
+    marian: { profilePicture: 'marian.jpg', name: 'Marian', wishlist: [] },
+    monika: { profilePicture: 'monika.jpg', name: 'Monika', wishlist: [] },
+    pat: { profilePicture: 'pat.jpg', name: 'Pat', wishlist: [] },
+    peter: { profilePicture: 'peter.jpg', name: 'Peter', wishlist: [] },
+    rob: { profilePicture: 'rob.jpg', name: 'Rob', wishlist: [] },
 };
 
 export const routes = {

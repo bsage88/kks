@@ -1,15 +1,15 @@
 import React from 'react';
 import _ from 'lodash';
 import KkName from './KkName';
-import { profilePictures } from '../constants';
+import { users } from '../constants';
 import { toggleMenu } from '../utils';
 
 function getNameList(showWishlist) {
-    return _.map(profilePictures, (value, key) => (
+    return _.map(users, (user, key) => (
         <KkName
             key={key}
-            name={key}
-            picture={value}
+            name={user.name}
+            picture={user.profilePicture}
             showWishlist={showWishlist}
         />
     ));

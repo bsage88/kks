@@ -4,22 +4,28 @@ import KkList from '../components/KkList';
 import Overlay from '../components/Overlay';
 import SnowFlakes from '../components/SnowFlakes';
 import { toggleMenu, toggleOverlay, capitalizeFirstLetter } from '../utils';
-import { firebase } from '../firebase';
+import { auth, database } from '../firebase/firebase';
 import { routes } from '../constants';
 import useAutoAuthentication from '../hooks/useAutoAuthentication';
+import useLoadUsers from '../hooks/useLoadUsers';
+import useLoadProfilePictures from '../hooks/useLoadProfilePictures';
+import { logout } from '../firebase/auth';
 
 export default function Kks({ history }) {
     const [matchedKK, setMatchedKK] = useState(null);
     const [wishlistUser, setWishlistUser] = useState(null);
     const [isWishlistVisible, setIsWishlistVisible] = useState(false);
+
+    const users = useLoadUsers();
+    const profilePictures = useLoadProfilePictures();
     useAutoAuthentication(undefined, () => history.push(routes.signIn));
 
     useEffect(() => {
-        if (firebase.auth.currentUser) {
+        if (auth.currentUser) {
             const userName = capitalizeFirstLetter(
-                firebase.auth.currentUser.email.split('@')[0]
+                auth.currentUser.email.split('@')[0]
             );
-            firebase.database
+            database
                 .ref(`/mappings/${userName}`)
                 .once('value')
                 .then((matchedKKSnapshot) => {
@@ -28,22 +34,18 @@ export default function Kks({ history }) {
         }
     }, []);
 
-    // return (
-    //     <button
-    //         onClick={() =>
-    //             firebase.auth.signOut().then(() => history.push(routes.signIn))
-    //         }
-    //     >
-    //         Logout
-    //     </button>
-    // );
-
-    if (!matchedKK) {
+    if (!auth.currentUser) {
         return null;
     }
 
     return (
         <div className="kk-container">
+            <button
+                className="logout-button"
+                onClick={() => logout(() => history.push(routes.signIn))}
+            >
+                Logout
+            </button>
             <div className="menu-container">
                 <button className="expand-menu" onClick={toggleMenu}>
                     <i className="fas fa-bars" />

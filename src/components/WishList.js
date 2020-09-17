@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getUserWishlist } from '../database';
+import { getUserWishlist } from '../firebase/database';
 
 export default function WishList({ name, closeWishlist }) {
     const [userWishlist, setUserWishlist] = useState(null);

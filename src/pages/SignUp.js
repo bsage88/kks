@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase';
+import _ from 'lodash';
+import { auth } from '../firebase/firebase';
 import { routes } from '../constants';
 import useKeyPress from '../hooks/useKeyPress';
+import useLoadUsers from '../hooks/useLoadUsers';
+import { saveUserEmail } from '../firebase/database';
 
 export default function SignUp({ history }) {
+    const [userKey, setUserKey] = useState(-1);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(null);
+
+    const users = useLoadUsers();
     useKeyPress(13, onSignUp);
 
     function onSignUp() {
@@ -17,8 +23,16 @@ export default function SignUp({ history }) {
             return;
         }
 
+        if (userKey === -1) {
+            setError({ message: 'Must select a user.' });
+            return;
+        }
+
         auth.doCreateUserWithEmailAndPassword(email, password)
-            .then(() => history.push(routes.home))
+            .then(() => {
+                saveUserEmail(userKey, email);
+                history.push(routes.home);
+            })
             .catch((error) => setError(error));
     }
 
@@ -26,11 +40,24 @@ export default function SignUp({ history }) {
         <div className="signin-container">
             <div className="signin-box">
                 <h2>REGISTER ACCOUNT</h2>
+                <label className="input-label">WHO ARE YOU</label>
+                <select
+                    onChange={(event) => setUserKey(event.target.value)}
+                    value={userKey}
+                >
+                    <option value={-1}></option>
+                    {_(users)
+                        .pickBy((user) => !user.email)
+                        .map((user, key) => (
+                            <option key={key} value={key}>
+                                {user.name}
+                            </option>
+                        ))
+                        .value()}
+                </select>
                 <label className="input-label">EMAIL</label>
                 <input
-                    onChange={(event) =>
-                        setEmail(event.target.value.toUpperCase())
-                    }
+                    onChange={(event) => setEmail(event.target.value)}
                     type="text"
                     value={email}
                 />

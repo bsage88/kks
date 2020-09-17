@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth } from '../firebase/firebase';
 import { routes } from '../constants';
 import useKeyPress from '../hooks/useKeyPress';
 import useAutoAuthentication from '../hooks/useAutoAuthentication';
+import { doSignInWithEmailAndPassword } from '../firebase/auth';
 
 export default function SignIn({ history }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+
     useKeyPress(13, onSignIn);
     useAutoAuthentication(() => history.push(routes.home));
 
     function onSignIn() {
-        auth.doSignInWithEmailAndPassword(email, password)
+        doSignInWithEmailAndPassword(email, password)
             .then(() => history.push(routes.home))
             .catch((error) => setError(error));
+    }
+
+    if (auth.currentUser) {
+        return null;
     }
 
     return (

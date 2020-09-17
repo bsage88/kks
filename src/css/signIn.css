@@ -22,7 +22,13 @@
     padding-left: 1rem;
 }
 
-.signin-container button {
+.signin-container select {
+    margin-bottom: 1rem;
+    padding-left: 0.7rem;
+}
+
+.signin-container button,
+.signin-container select {
     height: 43px;
 }
 
