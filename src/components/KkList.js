@@ -3,7 +3,6 @@ import _ from 'lodash';
 import KkName from './KkName';
 import { profilePictures } from '../constants';
 import { toggleMenu } from '../utils';
-import '../css/kkList.css';
 
 function getNameList(showWishlist) {
     return _.map(profilePictures, (value, key) => (

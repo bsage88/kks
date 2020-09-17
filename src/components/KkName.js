@@ -1,6 +1,5 @@
 import React from 'react';
 import None from '../images/none.jpg';
-import '../css/kkName.css';
 
 export default function KkName({ name, picture, showWishlist }) {
     const profilePicture = picture || None;

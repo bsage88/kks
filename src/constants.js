@@ -22,10 +22,12 @@ export const profilePictures = {
     Monika,
     Pat,
     Peter,
-    Rob
+    Rob,
 };
 
 export const routes = {
-    SIGN_IN: '/',
-    HOME: '/default'
+    forgotPassword: '/ForgotPassword',
+    home: '/',
+    signIn: '/SignIn',
+    signUp: '/Signup',
 };

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { getUserWishlist } from '../database';
-import '../css/wishlist.css';
 
 export default function WishList({ name, closeWishlist }) {
     const [userWishlist, setUserWishlist] = useState(null);
@@ -27,7 +26,7 @@ export default function WishList({ name, closeWishlist }) {
                     </div>
                 </h3>
                 <ul>
-                    {userWishlist.map(item => (
+                    {userWishlist.map((item) => (
                         <li key={`wish-${name}`}>{item}</li>
                     ))}
                 </ul>
