@@ -30,9 +30,7 @@ export default function SignIn({ history }) {
                 <h2>ACCOUNT LOGIN</h2>
                 <label className="input-label">EMAIL</label>
                 <input
-                    onChange={(event) =>
-                        setEmail(event.target.value.toUpperCase())
-                    }
+                    onChange={(event) => setEmail(event.target.value)}
                     type="text"
                     value={email}
                 />

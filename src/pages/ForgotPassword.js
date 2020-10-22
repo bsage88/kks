@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { doPasswordReset } from '../firebase/auth';
 import { routes } from '../constants';
+import useKeyPress from '../hooks/useKeyPress';
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('');
     const [completed, setCompleted] = useState(false);
     const [error, setError] = useState(null);
+
+    useKeyPress(13, onReset);
 
     function onReset() {
         doPasswordReset(email)
@@ -26,9 +29,7 @@ export default function ForgotPassword() {
                 <h2>RESET PASSWORD</h2>
                 <label className="input-label">EMAIL</label>
                 <input
-                    onChange={(event) =>
-                        setEmail(event.target.value.toUpperCase())
-                    }
+                    onChange={(event) => setEmail(event.target.value)}
                     type="text"
                     value={email}
                 />

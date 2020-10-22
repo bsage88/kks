@@ -3,7 +3,7 @@ import WishList from '../components/WishList';
 import KkList from '../components/KkList';
 import Overlay from '../components/Overlay';
 import SnowFlakes from '../components/SnowFlakes';
-import { toggleMenu, toggleOverlay, capitalizeFirstLetter } from '../utils';
+import { toggleMenu, capitalizeFirstLetter } from '../utils';
 import { auth, database } from '../firebase/firebase';
 import { routes } from '../constants';
 import useAutoAuthentication from '../hooks/useAutoAuthentication';
@@ -12,13 +12,21 @@ import useLoadProfilePictures from '../hooks/useLoadProfilePictures';
 import { logout } from '../firebase/auth';
 
 export default function Kks({ history }) {
+    const [isLoading, setIsLoading] = useState(true);
     const [matchedKK, setMatchedKK] = useState(null);
     const [wishlistUser, setWishlistUser] = useState(null);
     const [isWishlistVisible, setIsWishlistVisible] = useState(false);
+    const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
     const users = useLoadUsers();
     const profilePictures = useLoadProfilePictures();
     useAutoAuthentication(undefined, () => history.push(routes.signIn));
+
+    useEffect(() => {
+        if (users && profilePictures) {
+            setIsLoading(false);
+        }
+    }, [users, profilePictures]);
 
     useEffect(() => {
         if (auth.currentUser) {
@@ -34,7 +42,7 @@ export default function Kks({ history }) {
         }
     }, []);
 
-    if (!auth.currentUser) {
+    if (!auth.currentUser || isLoading) {
         return null;
     }
 
@@ -52,13 +60,18 @@ export default function Kks({ history }) {
                 </button>
             </div>
             <KkList
+                profilePictures={profilePictures}
+                users={users}
                 showWishlist={(name) => {
                     setWishlistUser(name);
                     setIsWishlistVisible(true);
                 }}
             />
             <div className="kk-button-container">
-                <button className="kk-button" onClick={toggleOverlay}>
+                <button
+                    className="kk-button"
+                    onClick={() => setIsOverlayVisible(true)}
+                >
                     Show your KK
                 </button>
             </div>
@@ -68,7 +81,11 @@ export default function Kks({ history }) {
                     closeWishlist={() => setIsWishlistVisible(false)}
                 />
             )}
-            <Overlay name={matchedKK} />
+            <Overlay
+                name={matchedKK}
+                isOverlayVisible={isOverlayVisible}
+                hideOverlay={() => setIsOverlayVisible(false)}
+            />
             <SnowFlakes />
         </div>
     );
