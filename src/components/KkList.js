@@ -1,8 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 import KkName from './KkName';
-import { users } from '../constants';
-import { toggleMenu } from '../utils';
 
 export default function KkList({ profilePictures, showWishlist, users }) {
     function getNameList() {
@@ -20,12 +18,7 @@ export default function KkList({ profilePictures, showWishlist, users }) {
 
     return (
         <div id="kkListContainer" className="kk-list-container">
-            <div className="kk-list-header">
-                <label>Participants</label>
-                <button className="expand-menu" onClick={toggleMenu}>
-                    <i className="fas fa-arrow-left" />
-                </button>
-            </div>
+            <label className="kk-list-header">Participants</label>
             <div className="kk-list">{getNameList()}</div>
         </div>
     );

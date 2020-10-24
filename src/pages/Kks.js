@@ -3,7 +3,7 @@ import WishList from '../components/WishList';
 import KkList from '../components/KkList';
 import Overlay from '../components/Overlay';
 import SnowFlakes from '../components/SnowFlakes';
-import { toggleMenu, capitalizeFirstLetter } from '../utils';
+import { capitalizeFirstLetter } from '../utils';
 import { auth, database } from '../firebase/firebase';
 import { routes } from '../constants';
 import useAutoAuthentication from '../hooks/useAutoAuthentication';
@@ -48,15 +48,12 @@ export default function Kks({ history }) {
 
     return (
         <div className="kk-container">
-            <button
-                className="logout-button"
-                onClick={() => logout(() => history.push(routes.signIn))}
-            >
-                Logout
-            </button>
-            <div className="menu-container">
-                <button className="expand-menu" onClick={toggleMenu}>
-                    <i className="fas fa-bars" />
+            <div className="kk-button-container">
+                <button
+                    className="blue-button kk-button"
+                    onClick={() => setIsOverlayVisible(true)}
+                >
+                    Show your KK
                 </button>
             </div>
             <KkList
@@ -67,14 +64,6 @@ export default function Kks({ history }) {
                     setIsWishlistVisible(true);
                 }}
             />
-            <div className="kk-button-container">
-                <button
-                    className="kk-button"
-                    onClick={() => setIsOverlayVisible(true)}
-                >
-                    Show your KK
-                </button>
-            </div>
             {isWishlistVisible && (
                 <WishList
                     name={wishlistUser}
@@ -86,6 +75,17 @@ export default function Kks({ history }) {
                 isOverlayVisible={isOverlayVisible}
                 hideOverlay={() => setIsOverlayVisible(false)}
             />
+            <div className="page-actions">
+                <button className="blue-button" onClick={() => {}}>
+                    Manage Wishlist
+                </button>
+                <button
+                    className="blue-button"
+                    onClick={() => logout(() => history.push(routes.signIn))}
+                >
+                    Logout
+                </button>
+            </div>
             <SnowFlakes />
         </div>
     );

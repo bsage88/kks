@@ -28,16 +28,26 @@ export default function SignIn({ history }) {
         <div className="signin-container">
             <div className="signin-box">
                 <h2>ACCOUNT LOGIN</h2>
-                <label className="input-label">EMAIL</label>
+                <label for="email-address" className="input-label">
+                    EMAIL
+                </label>
                 <input
+                    id="email-address"
+                    name="email-address"
+                    autoComplete="email"
                     onChange={(event) => setEmail(event.target.value)}
                     type="text"
                     value={email}
                 />
-                <label className="input-label">PASSWORD</label>
+                <label for="password" className="input-label">
+                    PASSWORD
+                </label>
                 <input
-                    onChange={(event) => setPassword(event.target.value)}
+                    id="password"
+                    name="password"
                     type="password"
+                    autoComplete="current-password"
+                    onChange={(event) => setPassword(event.target.value)}
                     value={password}
                 />
                 <Link className="forgot-password" to={routes.forgotPassword}>

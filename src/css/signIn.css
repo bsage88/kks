@@ -6,6 +6,19 @@
     height: 75vh;
 }
 
+.signin-container input,
+.signin-container button,
+.signin-container select {
+    height: 31px;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+    outline: none;
+    padding: 5px;
+}
+
 .signin-box {
     display: flex;
     flex-direction: column;

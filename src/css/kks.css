@@ -1,12 +1,27 @@
-.logout-button {
+.blue-button {
+    background: rgb(11, 19, 32);
+    color: #f2f2f2;
+    padding: 1em 1.25em;
+    border: 1px solid rgb(88, 198, 197);
+    border-radius: 2em;
+    cursor: pointer;
+    outline: none;
+}
+
+.blue-button:hover {
+    background-color: rgb(88, 198, 197);
+    border-color: rgb(11, 19, 32);
+    color: rgb(11, 19, 32);
+}
+
+.page-actions {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    color: #575757;
-    background: white;
-    border: 1px solid #f2f2f2;
-    cursor: pointer;
-    z-index: 10;
+}
+
+.page-actions button + button {
+    margin-left: 1rem;
 }
 
 .login-message {
@@ -21,9 +36,9 @@
 
 .kk-container {
     display: flex;
-    flex-grow: 1;
+    flex-direction: column;
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .kk-button-container {
@@ -31,45 +46,169 @@
     flex-grow: 1;
     justify-content: center;
     align-items: center;
+    min-height: 50vh;
 }
 
 .kk-button {
-    height: auto;
-    padding: 15px 25px;
     font-size: 24px;
-    border: 1px solid rgb(88, 198, 197);
-    border-radius: 30px;
-    background: rgb(11, 19, 32);
-    color: rgb(230, 230, 230);
-    cursor: pointer;
-    outline: none;
 }
 
 .kk-button:hover {
     background-color: rgb(88, 198, 197);
 }
 
-.menu-container {
+.kk-list-container {
+    background: rgb(18, 31, 53);
+    border-top: 1px solid rgb(60, 141, 140);
+    color: #f2f2f2;
+    padding-bottom: 1rem;
+}
+
+.kk-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.kk-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    padding: 10px;
+}
+
+.kk-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid rgb(88, 198, 197);
+    border-radius: 10px;
+}
+
+.kk-card__picture {
+    width: 75px;
+    height: 75px;
+    padding: 2px;
+    border-radius: 50%;
+    margin-right: 2rem;
+}
+
+.kk-card__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.kk-card__name {
+    font-size: 1.15rem;
+}
+
+.kk-card__wishlist-button {
+    padding: 1rem 1.25rem;
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    z-index: 1;
+    transition: all 0.2s ease;
+}
+
+.overlay--hidden {
+    opacity: 0;
+    z-index: -1;
+}
+
+.overlay-body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner {
     position: absolute;
     top: 0;
+    max-width: 100vw;
+}
+
+.sign {
+    max-width: 100vw;
+}
+
+.sign-name {
+    position: absolute;
+    bottom: 45px;
+    font-size: 45px;
+}
+
+.wishlist-overlay {
+    position: absolute;
     left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transition: all 0.5s ease-out;
 }
 
-.expand-menu {
-    font-size: 25px;
-    border: none;
-    padding: 10px;
-    background: transparent;
-    color: rgb(230, 230, 230);
+.wishlist-overlay-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid rgb(88, 198, 197);
+    background: black;
+    padding: 10px 30px;
+    color: white;
 }
 
-.expand-menu:hover {
-    background: rgb(88, 198, 197);
-    color: rgb(230, 230, 230);
+.wishlist-overlay-body li:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.wishlist-overlay-body li,
+.wishlist-overlay-body a {
+    color: white;
+}
+
+.wishlist-overlay-body h3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-wishlist {
+    margin-left: 50px;
+    cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
-    .expand-menu {
-        display: none;
+    .kk-list-container {
+        position: initial;
+    }
+
+    .kk-list,
+    .kk-list-header {
+        margin-top: 10px;
     }
 }
