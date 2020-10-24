@@ -28,7 +28,7 @@ export default function SignIn({ history }) {
         <div className="signin-container">
             <div className="signin-box">
                 <h2>ACCOUNT LOGIN</h2>
-                <label for="email-address" className="input-label">
+                <label htmlFor="email-address" className="input-label">
                     EMAIL
                 </label>
                 <input
@@ -39,7 +39,7 @@ export default function SignIn({ history }) {
                     type="text"
                     value={email}
                 />
-                <label for="password" className="input-label">
+                <label htmlFor="password" className="input-label">
                     PASSWORD
                 </label>
                 <input

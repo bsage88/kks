@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { auth } from '../firebase/firebase';
 import { routes } from '../constants';
 import useKeyPress from '../hooks/useKeyPress';
 import useLoadUsers from '../hooks/useLoadUsers';
 import { saveUserEmail } from '../firebase/database';
+import { doCreateUserWithEmailAndPassword } from '../firebase/auth';
 
 export default function SignUp({ history }) {
     const [userKey, setUserKey] = useState(-1);
@@ -28,7 +28,7 @@ export default function SignUp({ history }) {
             return;
         }
 
-        auth.doCreateUserWithEmailAndPassword(email, password)
+        doCreateUserWithEmailAndPassword(email, password)
             .then(() => {
                 saveUserEmail(userKey, email);
                 history.push(routes.home);

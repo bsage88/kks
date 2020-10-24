@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import _ from 'lodash';
 import WishList from '../components/WishList';
 import KkList from '../components/KkList';
 import Overlay from '../components/Overlay';
 import SnowFlakes from '../components/SnowFlakes';
-import { capitalizeFirstLetter } from '../utils';
+import { capitalizeFirstLetter, generateKKMappings } from '../utils';
 import { auth, database } from '../firebase/firebase';
 import { routes } from '../constants';
 import useAutoAuthentication from '../hooks/useAutoAuthentication';
@@ -12,6 +13,7 @@ import useLoadProfilePictures from '../hooks/useLoadProfilePictures';
 import { logout } from '../firebase/auth';
 
 export default function Kks({ history }) {
+    const [isAdmin, setIsAdmin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [matchedKK, setMatchedKK] = useState(null);
     const [wishlistUser, setWishlistUser] = useState(null);
@@ -20,7 +22,9 @@ export default function Kks({ history }) {
 
     const users = useLoadUsers();
     const profilePictures = useLoadProfilePictures();
-    useAutoAuthentication(undefined, () => history.push(routes.signIn));
+    const loggedInUser = useAutoAuthentication(undefined, () =>
+        history.push(routes.signIn)
+    );
 
     useEffect(() => {
         if (users && profilePictures) {
@@ -29,10 +33,14 @@ export default function Kks({ history }) {
     }, [users, profilePictures]);
 
     useEffect(() => {
-        if (auth.currentUser) {
-            const userName = capitalizeFirstLetter(
-                auth.currentUser.email.split('@')[0]
-            );
+        if (loggedInUser && users) {
+            const user = _.find(users, (x) => x.email === loggedInUser.email);
+            const userName = user.name.toLowerCase();
+
+            if (user.isAdmin) {
+                setIsAdmin(true);
+            }
+
             database
                 .ref(`/mappings/${userName}`)
                 .once('value')
@@ -40,9 +48,9 @@ export default function Kks({ history }) {
                     setMatchedKK(matchedKKSnapshot.val());
                 });
         }
-    }, []);
+    }, [loggedInUser, users]);
 
-    if (!auth.currentUser || isLoading) {
+    if (!loggedInUser || isLoading) {
         return null;
     }
 
@@ -76,7 +84,18 @@ export default function Kks({ history }) {
                 hideOverlay={() => setIsOverlayVisible(false)}
             />
             <div className="page-actions">
-                <button className="blue-button" onClick={() => {}}>
+                {isAdmin && (
+                    <button
+                        className="blue-button"
+                        onClick={() => generateKKMappings(users)}
+                    >
+                        Generate Mappings
+                    </button>
+                )}
+                <button
+                    className="blue-button"
+                    onClick={() => history.push(routes.manageWishlist)}
+                >
                     Manage Wishlist
                 </button>
                 <button

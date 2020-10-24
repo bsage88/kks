@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { users } from './constants';
 import { saveKKMappings, saveWishlists } from './firebase/database';
 
 export function capitalizeFirstLetter(string) {
@@ -10,10 +9,6 @@ export function toggleMenu(event) {
     event.preventDefault();
     const kkList = document.getElementById('kkListContainer');
     kkList.classList.toggle('visible');
-}
-
-function getNameArray() {
-    return _.map(users, 'name');
 }
 
 function getKKIndex(name, availableNames) {
@@ -32,15 +27,14 @@ function getKKIndex(name, availableNames) {
     return kkIndex;
 }
 
-function getKKMappings() {
-    const names = getNameArray();
-    let availableNames = getNameArray();
+function getKKMappings(names) {
+    let availableNames = [...names];
     let mappings = {};
 
     names.forEach((name) => {
         const kkIndex = getKKIndex(name, availableNames);
         if (kkIndex === null) {
-            console.log('oops');
+            console.log(`${name} used twice`);
             return null;
         }
 
@@ -51,23 +45,35 @@ function getKKMappings() {
     return mappings;
 }
 
-export function generateKKMappings() {
+function verifyMappings(names, mappings) {
+    return names.every(
+        (name) =>
+            Object.keys(mappings).filter((x) => x === name).length === 1 &&
+            _.values(mappings).filter((x) => x === name).length === 1
+    );
+}
+
+export function generateKKMappings(users) {
+    const names = _.map(users, (user, name) => name);
     let mappings;
+
     while (!mappings) {
-        mappings = getKKMappings();
+        mappings = getKKMappings(names);
     }
-    saveKKMappings(mappings);
+
+    console.log(verifyMappings(names, mappings));
+    console.log(mappings);
+    // saveKKMappings(mappings);
 }
 
 export function generateWishlists() {
-    const names = getNameArray();
-    const wishlists = names.reduce(
-        (results, name) => ({
-            ...results,
-            [name]: ['None'],
-        }),
-        {}
-    );
-
-    saveWishlists(wishlists);
+    // const names = getNameArray();
+    // const wishlists = names.reduce(
+    //     (results, name) => ({
+    //         ...results,
+    //         [name]: ['None'],
+    //     }),
+    //     {}
+    // );
+    // saveWishlists(wishlists);
 }
