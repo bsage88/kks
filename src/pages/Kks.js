@@ -4,7 +4,7 @@ import WishList from '../components/WishList';
 import KkList from '../components/KkList';
 import Overlay from '../components/Overlay';
 import SnowFlakes from '../components/SnowFlakes';
-import { capitalizeFirstLetter, generateKKMappings } from '../utils';
+import { generateKKMappings } from '../utils';
 import { auth, database } from '../firebase/firebase';
 import { routes } from '../constants';
 import useAutoAuthentication from '../hooks/useAutoAuthentication';
@@ -14,6 +14,7 @@ import { logout } from '../firebase/auth';
 
 export default function Kks({ history }) {
     const [isAdmin, setIsAdmin] = useState(false);
+    const [isGenerating, setIsGenerating] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [matchedKK, setMatchedKK] = useState(null);
     const [wishlistUser, setWishlistUser] = useState(null);
@@ -86,10 +87,18 @@ export default function Kks({ history }) {
             <div className="page-actions">
                 {isAdmin && (
                     <button
-                        className="blue-button"
-                        onClick={() => generateKKMappings(users)}
+                        className={`blue-button ${
+                            isGenerating ? 'button-disabled' : ''
+                        }`}
+                        disabled={isGenerating}
+                        onClick={() => {
+                            setIsGenerating(true);
+                            generateKKMappings(users).then(() =>
+                                setIsGenerating(false)
+                            );
+                        }}
                     >
-                        Generate Mappings
+                        Generate
                     </button>
                 )}
                 <button

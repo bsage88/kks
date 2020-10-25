@@ -34,7 +34,6 @@ function getKKMappings(names) {
     names.forEach((name) => {
         const kkIndex = getKKIndex(name, availableNames);
         if (kkIndex === null) {
-            console.log(`${name} used twice`);
             return null;
         }
 
@@ -53,15 +52,14 @@ function verifyMappings(names, mappings) {
     );
 }
 
-export function generateKKMappings(users) {
+export async function generateKKMappings(users) {
     const names = _.map(users, (user, name) => name);
     let mappings;
 
-    while (!mappings) {
+    while (!mappings || !verifyMappings(names, mappings)) {
         mappings = getKKMappings(names);
     }
 
-    console.log(verifyMappings(names, mappings));
     console.log(mappings);
     // saveKKMappings(mappings);
 }
