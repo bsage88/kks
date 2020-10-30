@@ -3,6 +3,8 @@ html {
   font-size: 14px;
   font-family: Roboto !important;
   background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 body {
   margin: 0;
@@ -132,7 +134,6 @@ button:disabled {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background: url(../images/background.jpg);
   background-repeat: no-repeat;
@@ -154,7 +155,7 @@ button:disabled {
 }
 .overlay__banner {
   max-width: 100%;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 .overlay__sign-name {
   position: absolute;
@@ -402,15 +403,17 @@ select {
 }
 .manage-wishlist-container {
   position: relative;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
 .manage-wishlist {
   display: flex;
   flex-direction: column;
+  max-height: 75vh;
   padding: 2rem 3rem;
-  margin: 6rem 2rem;
+  margin: 6rem 2rem 0;
+  overflow: auto;
   background: white;
   box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
