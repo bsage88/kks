@@ -21,7 +21,9 @@ export default function ManageWishlist(props) {
             const user = _.find(users, (x) => x.email === loggedInUser.email);
             const userName = user.name.toLowerCase();
 
-            getUserWishlist(userName, setUserWishlist);
+            getUserWishlist(userName, (response) =>
+                setUserWishlist(response ?? [])
+            );
             setUserName(userName);
         }
     }, [loggedInUser, users]);
@@ -40,10 +42,13 @@ export default function ManageWishlist(props) {
     }
 
     function onDelete(currentOrder) {
-        const updatedWishlist = userWishlist
-            .filter((x) => x.order !== currentOrder)
-            .map((x, index) => ({ ...x, order: index + 1 }));
-        saveWishlist(updatedWishlist);
+        // eslint-disable-next-line no-restricted-globals
+        if (confirm('Are you sure you want to delete this item?')) {
+            const updatedWishlist = userWishlist
+                .filter((x) => x.order !== currentOrder)
+                .map((x, index) => ({ ...x, order: index + 1 }));
+            saveWishlist(updatedWishlist);
+        }
     }
 
     function onMoveUp(currentOrder) {
