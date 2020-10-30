@@ -52,7 +52,7 @@ export default function ManageWishlist(props) {
             if (item.order === currentOrder) {
                 return {
                     ...item,
-                    order: Math.max(0, item.order - 1),
+                    order: Math.max(1, item.order - 1),
                 };
             }
 
