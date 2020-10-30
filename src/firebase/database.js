@@ -13,10 +13,6 @@ export function saveKKMappings(mappings) {
     database.ref('mappings').set(mappings);
 }
 
-export function saveWishlists(wishlists) {
-    database.ref('wishlists').set(wishlists);
-}
-
 export function saveUserWishlist(userName, wishlist) {
     database.ref(`/users/${userName}/wishlist`).set(wishlist);
 }

@@ -1,8 +1,13 @@
 import React from 'react';
 import sign from '../images/sign.png';
 import merryChristmas from '../images/merryChristmas.jpg';
+import { capitalizeFirstLetter } from '../utils';
 
 export default function Overlay(props) {
+    if (!props.name) {
+        return null;
+    }
+
     const className = !props.isOverlayVisible
         ? 'overlay overlay--hidden'
         : 'overlay';
@@ -12,7 +17,9 @@ export default function Overlay(props) {
             <img className="overlay__banner" src={merryChristmas} alt="" />
             <div className="overlay__body">
                 <img className="overlay__sign" src={sign} alt="" />
-                <div className="overlay__sign-name">{props.name}</div>
+                <div className="overlay__sign-name">
+                    {capitalizeFirstLetter(props.name)}
+                </div>
             </div>
         </div>
     );

@@ -160,6 +160,7 @@ button:disabled {
   position: absolute;
   bottom: 45px;
   font-size: 45px;
+  font-weight: bold;
 }
 .wishlist-overlay {
   display: flex;
@@ -207,6 +208,9 @@ select {
 input {
   height: 31px;
 }
+select {
+  height: 43px;
+}
 .signin-container {
   display: flex;
   flex-direction: column;
@@ -218,7 +222,7 @@ input {
 .signin-container button,
 .signin-container select {
   border-radius: 4px;
-  border: 1px solid lightgray;
+  border: 1px solid #f2f2f2;
   outline: none;
   padding: 5px;
 }
@@ -245,9 +249,14 @@ input {
 }
 .login-button {
   background: #4285f4;
-  color: white;
+  color: #f2f2f2;
   cursor: pointer;
   margin-top: 2rem;
+}
+.login-button:disabled {
+  background-color: inherit;
+  color: inherit;
+  border-color: inherit;
 }
 .input-label {
   font-weight: bold;
@@ -419,6 +428,9 @@ input {
   flex-direction: column;
   flex-grow: 1;
 }
+.add-wishlist-item__input + .add-wishlist-item__input {
+  margin-top: 1rem;
+}
 .add-wishlist-item__button {
   align-self: flex-end;
 }
@@ -449,13 +461,13 @@ input {
   visibility: hidden;
 }
 .wishlist-item__action--up:hover {
-  color: #237ebc;
-  border-color: #237ebc;
+  color: #4285f4;
+  border-color: #4285f4;
   opacity: 1;
 }
 .wishlist-item__action--down:hover {
-  color: #237ebc;
-  border-color: #237ebc;
+  color: #4285f4;
+  border-color: #4285f4;
   opacity: 1;
 }
 .wishlist-item__action--delete:hover {
@@ -479,6 +491,7 @@ input {
     flex-wrap: wrap;
   }
   .add-wishlist-item__input + .add-wishlist-item__input {
+    margin-top: 0;
     margin-left: 2rem;
   }
 }

@@ -8,7 +8,7 @@ import { saveUserEmail } from '../firebase/database';
 import { doCreateUserWithEmailAndPassword } from '../firebase/auth';
 
 export default function SignUp({ history }) {
-    const [userKey, setUserKey] = useState(-1);
+    const [userKey, setUserKey] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -45,7 +45,7 @@ export default function SignUp({ history }) {
                     onChange={(event) => setUserKey(event.target.value)}
                     value={userKey}
                 >
-                    <option value={-1}></option>
+                    {!userKey && <option value="" />}
                     {_(users)
                         .pickBy((user) => !user.email)
                         .map((user, key) => (
@@ -75,6 +75,7 @@ export default function SignUp({ history }) {
                 />
                 <button
                     className="login-button"
+                    disabled={!userKey}
                     onClick={onSignUp}
                     type="button"
                 >

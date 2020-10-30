@@ -93,6 +93,27 @@ export default function ManageWishlist(props) {
         saveWishlist(updatedWishlist);
     }
 
+    function renderItems() {
+        if (!userWishlist.length) {
+            return <div>No Items Available</div>;
+        }
+
+        return userWishlist
+            .sort((a, b) => a.order - b.order)
+            .map((item, index) => (
+                <WishlistItem
+                    key={item.order}
+                    description={item.description}
+                    editMode={true}
+                    link={item.link}
+                    onDelete={onDelete}
+                    onMoveUp={onMoveUp}
+                    onMoveDown={onMoveDown}
+                    order={item.order}
+                />
+            ));
+    }
+
     if (!userName) {
         return null;
     }
@@ -103,20 +124,7 @@ export default function ManageWishlist(props) {
                 <h2>Manage</h2>
                 <AddWishlistItem onAdd={onAdd} />
                 <h3>Wishlist Items</h3>
-                {userWishlist
-                    .sort((a, b) => a.order - b.order)
-                    .map((item, index) => (
-                        <WishlistItem
-                            key={item.order}
-                            description={item.description}
-                            editMode={true}
-                            link={item.link}
-                            onDelete={onDelete}
-                            onMoveUp={onMoveUp}
-                            onMoveDown={onMoveDown}
-                            order={item.order}
-                        />
-                    ))}
+                {renderItems()}
             </div>
             <div className="page-actions">
                 <button

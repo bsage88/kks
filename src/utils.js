@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { saveKKMappings, saveWishlists } from './firebase/database';
+import { saveKKMappings } from './firebase/database';
 
 export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -60,18 +60,6 @@ export async function generateKKMappings(users) {
         mappings = getKKMappings(names);
     }
 
-    console.log(mappings);
-    // saveKKMappings(mappings);
-}
-
-export function generateWishlists() {
-    // const names = getNameArray();
-    // const wishlists = names.reduce(
-    //     (results, name) => ({
-    //         ...results,
-    //         [name]: ['None'],
-    //     }),
-    //     {}
-    // );
-    // saveWishlists(wishlists);
+    // console.log(mappings['brian']);
+    saveKKMappings(mappings);
 }
