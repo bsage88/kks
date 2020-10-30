@@ -1,25 +1,118 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
 import AddWishlistItem from '../components/AddWishlistItem';
 import SnowFlakes from '../components/SnowFlakes';
 import { routes } from '../constants';
 import { logout } from '../firebase/auth';
 import WishlistItem from '../components/WishlistItem';
+import { saveUserWishlist, getUserWishlist } from '../firebase/database';
+import useAutoAuthentication from '../hooks/useAutoAuthentication';
+import useLoadUsers from '../hooks/useLoadUsers';
 
 export default function ManageWishlist(props) {
+    const [userName, setUserName] = useState(null);
+    const [userWishlist, setUserWishlist] = useState([]);
+    const users = useLoadUsers();
+    const loggedInUser = useAutoAuthentication(undefined, () =>
+        props.history.push(routes.signIn)
+    );
+
+    function saveWishlist(updatedWishlist) {
+        saveUserWishlist(userName, updatedWishlist);
+        setUserWishlist(updatedWishlist);
+    }
+
+    function onAdd(description, link) {
+        const updatedWishlist = [
+            ...userWishlist,
+            { description, link, order: userWishlist.length + 1 },
+        ];
+        saveWishlist(updatedWishlist);
+    }
+
+    function onDelete(currentOrder) {
+        const updatedWishlist = userWishlist
+            .filter((x) => x.order !== currentOrder)
+            .map((x, index) => ({ ...x, order: index + 1 }));
+        saveWishlist(updatedWishlist);
+    }
+
+    function onMoveUp(currentOrder) {
+        const updatedWishlist = userWishlist.map((item) => {
+            if (item.order === currentOrder) {
+                return {
+                    ...item,
+                    order: Math.max(0, item.order - 1),
+                };
+            }
+
+            if (item.order === currentOrder - 1) {
+                return {
+                    ...item,
+                    order: item.order + 1,
+                };
+            }
+
+            return item;
+        });
+        saveWishlist(updatedWishlist);
+    }
+
+    function onMoveDown(currentOrder) {
+        const updatedWishlist = userWishlist.map((item) => {
+            if (item.order === currentOrder) {
+                return {
+                    ...item,
+                    order: Math.min(userWishlist.length, item.order + 1),
+                };
+            }
+
+            if (item.order === currentOrder + 1) {
+                return {
+                    ...item,
+                    order: item.order - 1,
+                };
+            }
+
+            return item;
+        });
+        saveWishlist(updatedWishlist);
+    }
+
+    useEffect(() => {
+        if (loggedInUser && users) {
+            const user = _.find(users, (x) => x.email === loggedInUser.email);
+            const userName = user.name.toLowerCase();
+
+            getUserWishlist(userName, setUserWishlist);
+            setUserName(userName);
+        }
+    }, [loggedInUser, users]);
+
+    if (!userName) {
+        return null;
+    }
+
     return (
         <div className="manage-wishlist-container">
             <div className="manage-wishlist">
                 <h2>Manage</h2>
-                <AddWishlistItem />
-
+                <AddWishlistItem onAdd={onAdd} />
                 <h3>Wishlist Items</h3>
-                {props.wishlist.map((item) => (
-                    <WishlistItem
-                        description={item.description}
-                        link={item.link}
-                        order={item.order}
-                    />
-                ))}
+                {userWishlist
+                    .sort((a, b) => a.order - b.order)
+                    .map((item, index) => (
+                        <WishlistItem
+                            key={item.order}
+                            description={item.description}
+                            editMode={true}
+                            link={item.link}
+                            onDelete={onDelete}
+                            onMoveUp={onMoveUp}
+                            onMoveDown={onMoveDown}
+                            order={item.order}
+                        />
+                    ))}
             </div>
             <div className="page-actions">
                 <button
@@ -42,10 +135,4 @@ export default function ManageWishlist(props) {
     );
 }
 
-ManageWishlist.defaultProps = {
-    wishlist: [
-        { description: 'New Book', link: 'http://www.amazon.ca', order: 1 },
-        { description: 'Computer', order: 2 },
-        { description: 'Bike', link: 'http://www.amazon.ca', order: 3 },
-    ],
-};
+ManageWishlist.defaultProps = {};

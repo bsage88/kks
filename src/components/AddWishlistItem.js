@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function AddWishlistItem(props) {
+    const [description, setDescription] = useState('');
+    const [link, setLink] = useState('');
+
+    function onAdd() {
+        props.onAdd(description, link);
+        setDescription('');
+        setLink('');
+    }
+
     return (
         <div className="add-wishlist-item">
             <h3>Add Wishlist Item</h3>
@@ -12,9 +21,10 @@ export default function AddWishlistItem(props) {
                     <input
                         id="description"
                         name="description"
-                        onChange={(event) => {}}
+                        onChange={(event) => setDescription(event.target.value)}
+                        placeholder="New Popular Item"
                         type="text"
-                        value=""
+                        value={description}
                     />
                 </div>
                 <div className="add-wishlist-item__input">
@@ -24,13 +34,18 @@ export default function AddWishlistItem(props) {
                     <input
                         id="link"
                         name="link"
-                        onChange={(event) => {}}
+                        onChange={(event) => setLink(event.target.value)}
+                        placeholder="http://amazon.ca/"
                         type="text"
-                        value=""
+                        value={link}
                     />
                 </div>
             </div>
-            <button className="blue-button add-wishlist-item__button">
+            <button
+                className="blue-button add-wishlist-item__button"
+                disabled={!description}
+                onClick={onAdd}
+            >
                 Add
             </button>
         </div>

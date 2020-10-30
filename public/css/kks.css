@@ -20,6 +20,10 @@ a:hover {
 button {
   border: none;
   background: white;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
 }
 #root {
   height: 100%;
@@ -37,7 +41,6 @@ button {
   padding: 0.75em 1em;
   border: 1px solid #58c6c5;
   border-radius: 2em;
-  cursor: pointer;
   outline: none;
 }
 .blue-button:hover {
@@ -45,13 +48,7 @@ button {
   border-color: #0b1320;
   color: #0b1320;
 }
-.button-disabled {
-  background-color: inherit;
-  color: inherit;
-  border-color: inherit;
-  cursor: not-allowed;
-}
-.button-disabled:hover {
+.blue-button:disabled {
   background-color: inherit;
   color: inherit;
   border-color: inherit;
@@ -422,8 +419,8 @@ input {
 }
 .add-wishlist-item__inputs {
   display: flex;
-  flex-wrap: wrap;
-  margin: 0 0 0.5rem 0.5rem;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
 }
 .add-wishlist-item__input {
   display: flex;
@@ -433,24 +430,61 @@ input {
 .add-wishlist-item__button {
   align-self: flex-end;
 }
+.add-wishlist-item__button:disabled {
+  visibility: hidden;
+}
 .wishlist-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  padding: 0 0 1rem 0.5rem;
+  padding-bottom: 1rem;
+}
+.wishlist-item__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0.25rem;
+  border: 1px solid #575757;
+  border-radius: 5px;
+  color: #575757;
+  opacity: 0.35;
+  transition: opacity 0.2s ease;
+}
+.wishlist-item__action--hidden {
+  visibility: hidden;
+}
+.wishlist-item__action--up:hover {
+  color: #237ebc;
+  border-color: #237ebc;
+  opacity: 1;
+}
+.wishlist-item__action--down:hover {
+  color: #237ebc;
+  border-color: #237ebc;
+  opacity: 1;
+}
+.wishlist-item__action--delete:hover {
+  color: rgba(197, 0, 0, 0.692);
+  border-color: rgba(197, 0, 0, 0.692);
+  opacity: 1;
 }
 .wishlist-item__number {
-  margin-right: 0.5rem;
+  padding: 0.4rem 0.5rem 0.4rem 1rem;
 }
-.wishlist-item__delete {
-  flex-grow: 1;
-  margin-left: auto;
-  color: red;
+.wishlist-item__description {
+  padding-top: 0.4rem;
 }
 @media (min-width: 768px) {
   .manage-wishlist {
     margin: 6rem auto;
     width: 75%;
+  }
+  .add-wishlist-item__inputs {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
   .add-wishlist-item__input + .add-wishlist-item__input {
     margin-left: 2rem;

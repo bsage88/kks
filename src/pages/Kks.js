@@ -88,9 +88,7 @@ export default function Kks({ history }) {
             <div className="page-actions">
                 {isAdmin && (
                     <button
-                        className={`blue-button ${
-                            isGenerating ? 'button-disabled' : ''
-                        }`}
+                        className={'blue-button'}
                         disabled={isGenerating}
                         onClick={() => {
                             setIsGenerating(true);

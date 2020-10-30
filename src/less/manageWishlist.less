@@ -24,8 +24,8 @@
 
     &__inputs {
         display: flex;
-        flex-wrap: wrap;
-        margin: 0 0 0.5rem 0.5rem;
+        flex-direction: column;
+        margin-bottom: 0.5rem;
     }
 
     &__input {
@@ -36,23 +36,62 @@
 
     &__button {
         align-self: flex-end;
+
+        &:disabled {
+            visibility: hidden;
+        }
     }
 }
 
 .wishlist-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
-    padding: 0 0 1rem 0.5rem;
+    padding-bottom: 1rem;
 
-    &__number {
-        margin-right: 0.5rem;
+    &__action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 2rem;
+        height: 2rem;
+        margin: 0 0.25rem;
+        border: 1px solid #575757;
+        border-radius: 5px;
+        color: #575757;
+        opacity: 0.35;
+        transition: opacity 0.2s ease;
+
+        &--hidden {
+            visibility: hidden;
+        }
+
+        &--up:hover {
+            color: #237ebc;
+            border-color: #237ebc;
+            opacity: 1;
+        }
+
+        &--down:hover {
+            color: #237ebc;
+            border-color: #237ebc;
+            opacity: 1;
+        }
+
+        &--delete:hover {
+            color: rgba(197, 0, 0, 0.692);
+            border-color: rgba(197, 0, 0, 0.692);
+            opacity: 1;
+        }
     }
 
-    &__delete {
-        flex-grow: 1;
-        margin-left: auto;
-        color: red;
+    &__number {
+        padding: 0.4rem 0.5rem 0.4rem 1rem;
+    }
+
+    &__description {
+        padding-top: 0.4rem;
     }
 }
 
@@ -63,6 +102,11 @@
     }
 
     .add-wishlist-item {
+        &__inputs {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
         &__input + &__input {
             margin-left: 2rem;
         }

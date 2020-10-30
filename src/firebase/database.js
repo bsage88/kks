@@ -17,13 +17,17 @@ export function saveWishlists(wishlists) {
     database.ref('wishlists').set(wishlists);
 }
 
-export function saveUserEmail(userKey, email) {
-    database.ref(`/users/${userKey}/email`).set(email);
+export function saveUserWishlist(userName, wishlist) {
+    database.ref(`/users/${userName}/wishlist`).set(wishlist);
 }
 
-export function getUserWishlist(user, callback) {
+export function saveUserEmail(userName, email) {
+    database.ref(`/users/${userName}/email`).set(email);
+}
+
+export function getUserWishlist(userName, callback) {
     database
-        .ref(`/wishlists/${user}`)
+        .ref(`/users/${userName}/wishlist`)
         .once('value')
         .then((response) => {
             callback(response.val());
