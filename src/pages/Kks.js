@@ -5,7 +5,7 @@ import KkList from '../components/KkList';
 import Overlay from '../components/Overlay';
 import SnowFlakes from '../components/SnowFlakes';
 import { generateKKMappings } from '../utils';
-import { auth, database } from '../firebase/firebase';
+import { database } from '../firebase/firebase';
 import { routes } from '../constants';
 import useAutoAuthentication from '../hooks/useAutoAuthentication';
 import useLoadUsers from '../hooks/useLoadUsers';
@@ -17,8 +17,6 @@ export default function Kks({ history }) {
     const [isGenerating, setIsGenerating] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [matchedKK, setMatchedKK] = useState(null);
-    const [wishlistUser, setWishlistUser] = useState(null);
-    const [isWishlistVisible, setIsWishlistVisible] = useState(false);
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
     const users = useLoadUsers();
@@ -71,20 +69,7 @@ export default function Kks({ history }) {
                     hideOverlay={() => setIsOverlayVisible(false)}
                 />
             </div>
-            <KkList
-                profilePictures={profilePictures}
-                users={users}
-                showWishlist={(name) => {
-                    setWishlistUser(name);
-                    setIsWishlistVisible(true);
-                }}
-            />
-            {isWishlistVisible && (
-                <WishList
-                    name={wishlistUser}
-                    closeWishlist={() => setIsWishlistVisible(false)}
-                />
-            )}
+            <KkList profilePictures={profilePictures} users={users} />
             <div className="page-actions">
                 {isAdmin && (
                     <button

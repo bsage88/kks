@@ -17,6 +17,16 @@ export default function ManageWishlist(props) {
         props.history.push(routes.signIn)
     );
 
+    useEffect(() => {
+        if (loggedInUser && users) {
+            const user = _.find(users, (x) => x.email === loggedInUser.email);
+            const userName = user.name.toLowerCase();
+
+            getUserWishlist(userName, setUserWishlist);
+            setUserName(userName);
+        }
+    }, [loggedInUser, users]);
+
     function saveWishlist(updatedWishlist) {
         saveUserWishlist(userName, updatedWishlist);
         setUserWishlist(updatedWishlist);
@@ -78,16 +88,6 @@ export default function ManageWishlist(props) {
         });
         saveWishlist(updatedWishlist);
     }
-
-    useEffect(() => {
-        if (loggedInUser && users) {
-            const user = _.find(users, (x) => x.email === loggedInUser.email);
-            const userName = user.name.toLowerCase();
-
-            getUserWishlist(userName, setUserWishlist);
-            setUserName(userName);
-        }
-    }, [loggedInUser, users]);
 
     if (!userName) {
         return null;

@@ -65,7 +65,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
 }
 .kk-container .kk-button-container {
   position: relative;
@@ -82,10 +82,12 @@ button:disabled {
   background-color: #58c6c5;
 }
 .kk-container .kk-list-container {
+  min-height: 0;
   background: #121f35;
   border-top: 1px solid #3c8d8c;
   color: #f2f2f2;
   padding-bottom: 1rem;
+  overflow: auto;
 }
 .kk-container .kk-list {
   display: flex;
@@ -160,43 +162,33 @@ button:disabled {
   font-size: 45px;
 }
 .wishlist-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
+  color: #575757;
   background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   z-index: 1;
-  transition: all 0.5s ease-out;
 }
-.wishlist-overlay-body {
-  position: relative;
+.wishlist-overlay__body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  border: 2px solid #58c6c5;
-  background: black;
-  padding: 10px 30px;
-  color: white;
+  flex-grow: 0;
+  padding: 2rem 3rem;
+  width: 75vw;
+  max-width: 700px;
+  margin: 6rem 2rem;
+  background: white;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
-.wishlist-overlay-body li:not(:last-child) {
-  margin-bottom: 5px;
-}
-.wishlist-overlay-body li,
-.wishlist-overlay-body a {
-  color: white;
-}
-.wishlist-overlay-body h3 {
-  display: flex;
-  justify-content: space-between;
-}
-.close-wishlist {
-  margin-left: 50px;
-  cursor: pointer;
+.wishlist-overlay__close {
+  align-self: center;
+  margin-top: 1rem;
 }
 @media (min-width: 768px) {
   .kk-container .kk-list {
