@@ -41,7 +41,7 @@ export default function ForgotPassword() {
                     RESET
                 </button>
                 <Link className="signup-link" to={routes.signIn}>
-                    LOG IN
+                    GO BACK
                 </Link>
                 {completed && (
                     <p className="password-reset-success">
