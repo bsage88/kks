@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import AddWishlistItem from '../components/AddWishlistItem';
-import SnowFlakes from '../components/SnowFlakes';
 import { routes } from '../constants';
 import { logout } from '../firebase/auth';
 import WishlistItem from '../components/WishlistItem';
@@ -130,7 +129,6 @@ export default function ManageWishlist(props) {
                     Logout
                 </button>
             </div>
-            <SnowFlakes />
         </div>
     );
 }

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
-import WishList from '../components/WishList';
 import KkList from '../components/KkList';
 import Overlay from '../components/Overlay';
-import SnowFlakes from '../components/SnowFlakes';
 import { generateKKMappings } from '../utils';
 import { database } from '../firebase/firebase';
 import { routes } from '../constants';
@@ -98,7 +96,6 @@ export default function Kks({ history }) {
                     Logout
                 </button>
             </div>
-            <SnowFlakes />
         </div>
     );
 }
