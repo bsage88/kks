@@ -9,10 +9,10 @@ export default function Overlay(props) {
 
     return (
         <div id="overlay" className={className} onClick={props.hideOverlay}>
-            <img className="banner" src={merryChristmas} alt="" />
-            <div className="overlay-body">
-                <img className="sign" src={sign} alt="" />
-                <div className="sign-name">{props.name}</div>
+            <img className="overlay__banner" src={merryChristmas} alt="" />
+            <div className="overlay__body">
+                <img className="overlay__sign" src={sign} alt="" />
+                <div className="overlay__sign-name">{props.name}</div>
             </div>
         </div>
     );

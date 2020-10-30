@@ -71,6 +71,7 @@ button {
   min-height: 100vh;
 }
 .kk-container .kk-button-container {
+  position: relative;
   display: flex;
   flex-grow: 1;
   justify-content: center;
@@ -128,40 +129,35 @@ button {
 }
 .overlay {
   position: absolute;
-  left: 0;
-  top: 0;
   width: 100vw;
-  height: 100vh;
-  background: url(../images/background.jpg);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
   opacity: 1;
   z-index: 1;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 .overlay--hidden {
   opacity: 0;
   z-index: -1;
 }
-.overlay-body {
+.overlay__body {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.banner {
-  position: absolute;
-  top: 0;
-  max-width: 100vw;
+.overlay__banner {
+  max-width: 100%;
+  margin-bottom: 5rem;
 }
-.sign {
-  max-width: 100vw;
-}
-.sign-name {
+.overlay__sign-name {
   position: absolute;
   bottom: 45px;
   font-size: 45px;

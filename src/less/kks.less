@@ -45,6 +45,7 @@
     min-height: 100vh;
 
     .kk-button-container {
+        position: relative;
         display: flex;
         flex-grow: 1;
         justify-content: center;
@@ -113,48 +114,44 @@
 
 .overlay {
     position: absolute;
-    left: 0;
-    top: 0;
     width: 100vw;
-    height: 100vh;
-    background: url(../images/background.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
     opacity: 1;
     z-index: 1;
-    transition: all 0.2s ease;
-}
+    transition: opacity 0.2s ease;
 
-.overlay--hidden {
-    opacity: 0;
-    z-index: -1;
-}
+    &--hidden {
+        opacity: 0;
+        z-index: -1;
+    }
+    &__body {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.overlay-body {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    &__banner {
+        max-width: 100%;
+        margin-bottom: 5rem;
+    }
 
-.banner {
-    position: absolute;
-    top: 0;
-    max-width: 100vw;
-}
+    &__sign {
+    }
 
-.sign {
-    max-width: 100vw;
-}
-
-.sign-name {
-    position: absolute;
-    bottom: 45px;
-    font-size: 45px;
+    &__sign-name {
+        position: absolute;
+        bottom: 45px;
+        font-size: 45px;
+    }
 }
 
 .manage-wishlist {

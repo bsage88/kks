@@ -27,7 +27,7 @@ export default function App() {
                     path={routes.manageWishlist}
                     component={ManageWishlist}
                 />
-                <Redirect to={routes.home} />
+                <Redirect exact={true} path="/" to={routes.home} />
             </Switch>
         </Router>
     );

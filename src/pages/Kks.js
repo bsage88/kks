@@ -64,6 +64,12 @@ export default function Kks({ history }) {
                 >
                     Show your KK
                 </button>
+
+                <Overlay
+                    name={matchedKK}
+                    isOverlayVisible={isOverlayVisible}
+                    hideOverlay={() => setIsOverlayVisible(false)}
+                />
             </div>
             <KkList
                 profilePictures={profilePictures}
@@ -79,11 +85,6 @@ export default function Kks({ history }) {
                     closeWishlist={() => setIsWishlistVisible(false)}
                 />
             )}
-            <Overlay
-                name={matchedKK}
-                isOverlayVisible={isOverlayVisible}
-                hideOverlay={() => setIsOverlayVisible(false)}
-            />
             <div className="page-actions">
                 {isAdmin && (
                     <button
