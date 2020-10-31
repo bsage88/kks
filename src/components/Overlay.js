@@ -1,7 +1,6 @@
 import React from 'react';
 import sign from '../images/sign.png';
 import merryChristmas from '../images/merryChristmas.jpg';
-import background from '../images/background.jpg';
 import { capitalizeFirstLetter } from '../utils';
 
 export default function Overlay(props) {

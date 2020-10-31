@@ -84,6 +84,9 @@ button:disabled {
   background-color: #58c6c5;
 }
 .kk-container .kk-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: #121f35;
   border-top: 1px solid #3c8d8c;
   color: #f2f2f2;
@@ -93,11 +96,9 @@ button:disabled {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 880px;
 }
 .kk-container .kk-list-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 25px;
   padding: 10px;
 }
