@@ -42,7 +42,7 @@
         flex-grow: 1;
         justify-content: center;
         align-items: center;
-        min-height: 50vh;
+        min-height: 536px;
     }
 
     .kk-button {
@@ -54,18 +54,16 @@
     }
 
     .kk-list-container {
-        min-height: 0;
         background: rgb(18, 31, 53);
         border-top: 1px solid rgb(60, 141, 140);
         color: #f2f2f2;
         padding-bottom: 1rem;
-        overflow: auto;
     }
 
     .kk-list {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
     }
 
     .kk-list-header {
@@ -113,10 +111,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url(../images/background.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: center;
+    justify-content: center;
     opacity: 1;
     z-index: 1;
     transition: opacity 0.2s ease;
@@ -125,6 +120,27 @@
         opacity: 0;
         z-index: -1;
     }
+
+    &__shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    &__background {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: url(../images/background.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
+        z-index: 1;
+    }
+
     &__body {
         position: relative;
         display: flex;
@@ -133,8 +149,8 @@
     }
 
     &__banner {
-        max-width: 100%;
-        margin-bottom: 2rem;
+        max-width: calc(100% - 4rem);
+        margin: 1rem auto;
     }
 
     &__sign-name {
@@ -150,7 +166,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100vw;
@@ -181,9 +197,6 @@
 
 @media (min-width: 768px) {
     .kk-container {
-        .kk-list {
-            justify-content: normal;
-        }
         .kk-card__picture {
             margin-right: 1.5rem;
         }
