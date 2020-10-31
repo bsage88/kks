@@ -1,0 +1,52 @@
+@link: #237ebc;
+
+html {
+    color: #575757;
+    font-size: 14px;
+    font-family: Roboto !important;
+    background-image: linear-gradient(
+        to right top,
+        #051937,
+        #004d7a,
+        #008793,
+        #00bf72,
+        #a8eb12
+    );
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+a {
+    color: @link;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+button {
+    border: none;
+    background: white;
+    cursor: pointer;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+#root {
+    height: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 0px; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
+}

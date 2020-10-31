@@ -1,6 +1,5 @@
 import _ from 'lodash';
-import { profilePictures } from './constants';
-import { saveKKMappings, saveWishlists } from './database';
+import { saveKKMappings } from './firebase/database';
 
 export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -10,16 +9,6 @@ export function toggleMenu(event) {
     event.preventDefault();
     const kkList = document.getElementById('kkListContainer');
     kkList.classList.toggle('visible');
-}
-
-export function toggleOverlay(event) {
-    event.preventDefault();
-    const overlay = document.getElementById('overlay');
-    overlay.classList.toggle('visible');
-}
-
-function getNameArray() {
-    return Object.keys(profilePictures);
 }
 
 function getKKIndex(name, availableNames) {
@@ -38,15 +27,13 @@ function getKKIndex(name, availableNames) {
     return kkIndex;
 }
 
-function getKKMappings() {
-    const names = getNameArray();
-    let availableNames = getNameArray();
+function getKKMappings(names) {
+    let availableNames = [...names];
     let mappings = {};
 
-    names.forEach(name => {
+    names.forEach((name) => {
         const kkIndex = getKKIndex(name, availableNames);
         if (kkIndex === null) {
-            console.log('oops');
             return null;
         }
 
@@ -57,23 +44,22 @@ function getKKMappings() {
     return mappings;
 }
 
-export function generateKKMappings() {
-    let mappings;
-    while (!mappings) {
-        mappings = getKKMappings();
-    }
-    saveKKMappings(mappings);
+function verifyMappings(names, mappings) {
+    return names.every(
+        (name) =>
+            Object.keys(mappings).filter((x) => x === name).length === 1 &&
+            _.values(mappings).filter((x) => x === name).length === 1
+    );
 }
 
-export function generateWishlists() {
-    const names = getNameArray();
-    const wishlists = names.reduce(
-        (results, name) => ({
-            ...results,
-            [name]: ['None']
-        }),
-        {}
-    );
+export async function generateKKMappings(users) {
+    const names = _.map(users, (user, name) => name);
+    let mappings;
 
-    saveWishlists(wishlists);
+    while (!mappings || !verifyMappings(names, mappings)) {
+        mappings = getKKMappings(names);
+    }
+
+    // console.log(mappings['brian']);
+    saveKKMappings(mappings);
 }

@@ -1,31 +1,23 @@
 import React from 'react';
 import _ from 'lodash';
 import KkName from './KkName';
-import { profilePictures } from '../constants';
-import { toggleMenu } from '../utils';
-import '../css/kkList.css';
 
-function getNameList(showWishlist) {
-    return _.map(profilePictures, (value, key) => (
-        <KkName
-            key={key}
-            name={key}
-            picture={value}
-            showWishlist={showWishlist}
-        />
-    ));
-}
-
-export default function KkList({ showWishlist }) {
+export default function KkList({ profilePictures, showWishlist, users }) {
     return (
         <div id="kkListContainer" className="kk-list-container">
-            <div className="kk-list-header">
-                <label>Participants</label>
-                <button className="expand-menu" onClick={toggleMenu}>
-                    <i className="fas fa-arrow-left" />
-                </button>
+            <label className="kk-list-header">Participants</label>
+            <div className="kk-list">
+                {_.map(users, (user, name) => (
+                    <KkName
+                        key={name}
+                        name={name}
+                        picture={
+                            profilePictures?.[name]?.url ??
+                            profilePictures.none.url
+                        }
+                    />
+                ))}
             </div>
-            <div className="kk-list">{getNameList(showWishlist)}</div>
         </div>
     );
 }
