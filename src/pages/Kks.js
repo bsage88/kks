@@ -31,7 +31,11 @@ export default function Kks({ history }) {
 
     useEffect(() => {
         if (loggedInUser && users) {
-            const user = _.find(users, (x) => x.email === loggedInUser.email);
+            const user = _.find(
+                users,
+                (x) =>
+                    x.email.toLowerCase() === loggedInUser.email.toLowerCase()
+            );
             const userName = user.name.toLowerCase();
 
             if (user.isAdmin) {
