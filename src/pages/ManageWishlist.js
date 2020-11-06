@@ -21,9 +21,10 @@ export default function ManageWishlist(props) {
             const user = _.find(
                 users,
                 (x) =>
-                    x.email.toLowerCase() === loggedInUser.email.toLowerCase()
+                    x.email?.toLowerCase() ===
+                    loggedInUser?.email?.toLowerCase()
             );
-            const userName = user.name.toLowerCase();
+            const userName = user?.name?.toLowerCase();
 
             getUserWishlist(userName, (response) =>
                 setUserWishlist(response ?? [])

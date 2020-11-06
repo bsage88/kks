@@ -34,11 +34,11 @@ export default function Kks({ history }) {
             const user = _.find(
                 users,
                 (x) =>
-                    x.email.toLowerCase() === loggedInUser.email.toLowerCase()
+                    x.email?.toLowerCase() === loggedInUser.email?.toLowerCase()
             );
-            const userName = user.name.toLowerCase();
+            const userName = user?.name?.toLowerCase();
 
-            if (user.isAdmin) {
+            if (user?.isAdmin) {
                 setIsAdmin(true);
             }
 

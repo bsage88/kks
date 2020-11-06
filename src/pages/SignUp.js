@@ -47,10 +47,10 @@ export default function SignUp({ history }) {
                 >
                     {!userKey && <option value="" />}
                     {_(users)
-                        .pickBy((user) => !user.email)
+                        .pickBy((user) => !user?.email)
                         .map((user, key) => (
                             <option key={key} value={key}>
-                                {user.name}
+                                {user?.name}
                             </option>
                         ))
                         .value()}
