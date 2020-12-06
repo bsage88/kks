@@ -50,7 +50,7 @@ export default function WishlistItem(props) {
             {props.link && (
                 <a
                     className="wishlist-item__description"
-                    href={`//${props.link}`}
+                    href={props.link}
                     rel="noopener noreferrer"
                     target="_blank"
                     title={props.link}
