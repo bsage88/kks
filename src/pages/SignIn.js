@@ -34,7 +34,7 @@ export default function SignIn({ history }) {
                 <input
                     id="email-address"
                     name="email-address"
-                    autoComplete="email"
+                    autoComplete="email-address"
                     onChange={(event) => setEmail(event.target.value)}
                     type="text"
                     value={email}
@@ -46,7 +46,7 @@ export default function SignIn({ history }) {
                     id="password"
                     name="password"
                     type="password"
-                    autoComplete="current-password"
+                    autoComplete="password"
                     onChange={(event) => setPassword(event.target.value)}
                     value={password}
                 />
