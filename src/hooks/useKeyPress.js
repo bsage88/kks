@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
-/* eslint-disable react-hooks/exhaustive-deps */
 export default function useKeyPress(targetKeyCode, callback) {
-    function onKeyPress({ keyCode }) {
-        if (keyCode === targetKeyCode) {
-            callback();
-        }
-    }
+    const onKeyPress = useCallback(
+        ({ keyCode }) => {
+            if (keyCode === targetKeyCode) {
+                callback();
+            }
+        },
+        [callback, targetKeyCode]
+    );
 
     useEffect(() => {
         window.addEventListener('keyup', onKeyPress);
@@ -14,6 +16,5 @@ export default function useKeyPress(targetKeyCode, callback) {
         return () => {
             window.removeEventListener('keyup', onKeyPress);
         };
-    }, [callback]);
+    }, [onKeyPress]);
 }
-/* eslint-enable react-hooks/exhaustive-deps */
