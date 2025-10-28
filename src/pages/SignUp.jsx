@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import _ from 'lodash';
 import { routes } from '../constants';
 import useKeyPress from '../hooks/useKeyPress';
@@ -7,12 +7,13 @@ import useLoadUsers from '../hooks/useLoadUsers';
 import { saveUserEmail } from '../firebase/database';
 import { doCreateUserWithEmailAndPassword } from '../firebase/auth';
 
-export default function SignUp({ history }) {
+export default function SignUp() {
     const [userKey, setUserKey] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const users = useLoadUsers();
     useKeyPress(13, onSignUp);
@@ -31,7 +32,7 @@ export default function SignUp({ history }) {
         doCreateUserWithEmailAndPassword(email, password)
             .then(() => {
                 saveUserEmail(userKey, email);
-                history.push(routes.home);
+                navigate(routes.home);
             })
             .catch((error) => setError(error));
     }

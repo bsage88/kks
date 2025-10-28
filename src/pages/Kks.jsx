@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
+import { useNavigate } from 'react-router-dom';
 import KkList from '../components/KkList';
 import Overlay from '../components/Overlay';
 import { generateKKMappings } from '../utils';
+import { ref, get } from 'firebase/database';
 import { database } from '../firebase/firebase';
 import { routes } from '../constants';
 import useAutoAuthentication from '../hooks/useAutoAuthentication';
@@ -10,17 +12,18 @@ import useLoadUsers from '../hooks/useLoadUsers';
 import useLoadProfilePictures from '../hooks/useLoadProfilePictures';
 import { logout } from '../firebase/auth';
 
-export default function Kks({ history }) {
+export default function Kks() {
     const [isAdmin, setIsAdmin] = useState(false);
     const [isGenerating, setIsGenerating] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [matchedKK, setMatchedKK] = useState(null);
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+    const navigate = useNavigate();
 
     const users = useLoadUsers();
     const profilePictures = useLoadProfilePictures();
     const loggedInUser = useAutoAuthentication(undefined, () =>
-        history.push(routes.signIn)
+        navigate(routes.signIn)
     );
 
     useEffect(() => {
@@ -42,12 +45,10 @@ export default function Kks({ history }) {
                 setIsAdmin(true);
             }
 
-            database
-                .ref(`/mappings/${userName}`)
-                .once('value')
-                .then((matchedKKSnapshot) => {
-                    setMatchedKK(matchedKKSnapshot.val());
-                });
+            const mappingRef = ref(database, `/mappings/${userName}`);
+            get(mappingRef).then((matchedKKSnapshot) => {
+                setMatchedKK(matchedKKSnapshot.val());
+            });
         }
     }, [loggedInUser, users]);
 
@@ -89,13 +90,13 @@ export default function Kks({ history }) {
                 )}
                 <button
                     className="blue-button"
-                    onClick={() => history.push(routes.manageWishlist)}
+                    onClick={() => navigate(routes.manageWishlist)}
                 >
                     Manage Wishlist
                 </button>
                 <button
                     className="blue-button"
-                    onClick={() => logout(() => history.push(routes.signIn))}
+                    onClick={() => logout(() => navigate(routes.signIn))}
                 >
                     Logout
                 </button>
