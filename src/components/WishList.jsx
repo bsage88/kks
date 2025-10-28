@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getUserWishlist } from '../firebase/database';
 import WishlistItem from './WishlistItem';
 import { capitalizeFirstLetter } from '../utils';

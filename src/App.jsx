@@ -1,4 +1,3 @@
-import React from 'react'; // eslint-disable-line
 import {
     BrowserRouter as Router,
     Route,

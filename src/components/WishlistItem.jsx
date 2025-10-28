@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function WishlistItem(props) {
     function deleteButton() {
         return (
