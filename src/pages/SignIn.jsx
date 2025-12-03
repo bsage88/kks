@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase/firebase';
 import { routes } from '../constants';
 import useKeyPress from '../hooks/useKeyPress';
 import useAutoAuthentication from '../hooks/useAutoAuthentication';
 import { doSignInWithEmailAndPassword } from '../firebase/auth';
 
-export default function SignIn({ history }) {
+export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useKeyPress(13, onSignIn);
-    useAutoAuthentication(() => history.push(routes.home));
+    useAutoAuthentication(() => navigate(routes.home));
 
     function onSignIn() {
         doSignInWithEmailAndPassword(email, password)
-            .then(() => history.push(routes.home))
+            .then(() => navigate(routes.home))
             .catch((error) => setError(error));
     }
 

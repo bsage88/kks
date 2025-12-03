@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function SnowFlakes() {
     return (
         <div className="snowflakes" aria-hidden="true">

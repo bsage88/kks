@@ -1,7 +1,7 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
-import 'firebase/storage';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
+import { getStorage } from 'firebase/storage';
 
 var config = {
     /* COPY THE ACTUAL CONFIG FROM FIREBASE CONSOLE */
@@ -13,12 +13,10 @@ var config = {
     messagingSenderId: '970686542628',
 };
 
-if (!firebase.apps.length) {
-    firebase.initializeApp(config);
-}
+const app = initializeApp(config);
 
-const auth = firebase.auth();
-const database = firebase.database();
-const storage = firebase.storage();
+const auth = getAuth(app);
+const database = getDatabase(app);
+const storage = getStorage(app);
 
 export { auth, database, storage };

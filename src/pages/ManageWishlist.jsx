@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import _ from 'lodash';
+import { useNavigate } from 'react-router-dom';
 import AddWishlistItem from '../components/AddWishlistItem';
 import { routes } from '../constants';
 import { logout } from '../firebase/auth';
@@ -8,12 +9,13 @@ import { saveUserWishlist, getUserWishlist } from '../firebase/database';
 import useAutoAuthentication from '../hooks/useAutoAuthentication';
 import useLoadUsers from '../hooks/useLoadUsers';
 
-export default function ManageWishlist(props) {
+export default function ManageWishlist() {
     const [userName, setUserName] = useState(null);
     const [userWishlist, setUserWishlist] = useState([]);
+    const navigate = useNavigate();
     const users = useLoadUsers();
     const loggedInUser = useAutoAuthentication(undefined, () =>
-        props.history.push(routes.signIn)
+        navigate(routes.signIn)
     );
 
     useEffect(() => {
@@ -134,15 +136,13 @@ export default function ManageWishlist(props) {
             <div className="page-actions">
                 <button
                     className="blue-button"
-                    onClick={() => props.history.push(routes.home)}
+                    onClick={() => navigate(routes.home)}
                 >
                     Home
                 </button>
                 <button
                     className="blue-button"
-                    onClick={() =>
-                        logout(() => props.history.push(routes.signIn))
-                    }
+                    onClick={() => logout(() => navigate(routes.signIn))}
                 >
                     Logout
                 </button>

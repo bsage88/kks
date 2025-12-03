@@ -1,31 +1,31 @@
+import { ref, get, set } from 'firebase/database';
 import { database } from './firebase';
 
 export function getUsers(callback) {
-    database
-        .ref(`/users`)
-        .once('value')
-        .then((response) => {
-            callback(response.val());
-        });
+    const usersRef = ref(database, '/users');
+    get(usersRef).then((response) => {
+        callback(response.val());
+    });
 }
 
 export function saveKKMappings(mappings) {
-    database.ref('mappings').set(mappings);
+    const mappingsRef = ref(database, 'mappings');
+    set(mappingsRef, mappings);
 }
 
 export function saveUserWishlist(userName, wishlist) {
-    database.ref(`/users/${userName}/wishlist`).set(wishlist);
+    const wishlistRef = ref(database, `/users/${userName}/wishlist`);
+    set(wishlistRef, wishlist);
 }
 
 export function saveUserEmail(userName, email) {
-    database.ref(`/users/${userName}/email`).set(email);
+    const emailRef = ref(database, `/users/${userName}/email`);
+    set(emailRef, email);
 }
 
 export function getUserWishlist(userName, callback) {
-    database
-        .ref(`/users/${userName}/wishlist`)
-        .once('value')
-        .then((response) => {
-            callback(response.val());
-        });
+    const wishlistRef = ref(database, `/users/${userName}/wishlist`);
+    get(wishlistRef).then((response) => {
+        callback(response.val());
+    });
 }

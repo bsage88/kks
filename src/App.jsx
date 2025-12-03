@@ -1,9 +1,8 @@
-import React from 'react'; // eslint-disable-line
 import {
     BrowserRouter as Router,
     Route,
-    Switch,
-    Redirect,
+    Routes,
+    Navigate,
 } from 'react-router-dom';
 import { routes } from './constants';
 import Kks from './pages/Kks';
@@ -17,20 +16,23 @@ export default function App() {
     return (
         <>
             <Router>
-                <Switch>
-                    <Route path={routes.home} component={Kks} />
+                <Routes>
+                    <Route path={routes.home} element={<Kks />} />
                     <Route
                         path={routes.forgotPassword}
-                        component={ForgotPassword}
+                        element={<ForgotPassword />}
                     />
-                    <Route path={routes.signIn} component={SignIn} />
-                    <Route path={routes.signUp} component={SignUp} />
+                    <Route path={routes.signIn} element={<SignIn />} />
+                    <Route path={routes.signUp} element={<SignUp />} />
                     <Route
                         path={routes.manageWishlist}
-                        component={ManageWishlist}
+                        element={<ManageWishlist />}
                     />
-                    <Redirect exact={true} path="/" to={routes.home} />
-                </Switch>
+                    <Route
+                        path="/"
+                        element={<Navigate to={routes.home} replace />}
+                    />
+                </Routes>
             </Router>
             <SnowFlakes />
         </>

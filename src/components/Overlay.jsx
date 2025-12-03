@@ -1,4 +1,3 @@
-import React from 'react';
 import sign from '../images/sign.png';
 import merryChristmas from '../images/merryChristmas.jpg';
 import { capitalizeFirstLetter } from '../utils';
