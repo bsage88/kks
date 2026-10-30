@@ -4,7 +4,7 @@
     "private": true,
     "homepage": ".",
     "dependencies": {
-        "firebase": "^12",
+        "firebase": "^13.1.0",
         "lodash": "^4.17.21",
         "react": "^19",
         "react-dom": "^19",
